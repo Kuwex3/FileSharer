@@ -18,6 +18,7 @@ export default function App() {
           <br />
           straight there.
         </h1>
+        
         <div className={styles.contentRow}>
           <div className={styles.textContent}>
             <p className={styles.subhead}>
