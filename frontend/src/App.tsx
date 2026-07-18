@@ -35,6 +35,7 @@ export default function App() {
           <div className={styles.node}>
             <span className={styles.nodeLabel}>you</span>
           </div>
+          
           <div className={styles.line}>
             <span className={styles.packet} />
           </div>
