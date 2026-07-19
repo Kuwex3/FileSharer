@@ -27,7 +27,7 @@ export default function App() {
             </p>
             
             <Link to="/upload" className={styles.uploadBtn}>
-              Upload File!
+              Upload File
             </Link>
           </div>
 
