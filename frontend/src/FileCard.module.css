@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
+
+.cardDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    background-color: rgba(47, 78, 93, 0.157);
+    padding: 40px, 24px;
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 650px;
+    margin: 80px auto;
+}
+
+.cardDiv h1 {
+  font-family: 'Goldman', sans-serif;
+  color: #ffffff;
+  line-height: 1.2;
+  margin: 0 0 16px 0;
+  font-size: 44px;
+  text-align: center;
+  word-break: break-word;
+}
+
+.cardDiv h2 {
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: #8595ad;
+  margin: 0 0 24px 0;
+  font-size: 60px;
+  font-weight: 400;
+}
+
+.cardDiv img {
+  width: 150px;
+  height: auto;
+  margin-bottom: 32px;
+}
+
+.downloadBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #6bfd81;
+  color: #0f1724;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 30px;
+  font-weight: 500;
+
+  padding: 16px 0;
+  width: 100%;
+  max-width: 450px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 20px rgba(107, 253, 129, 0.2);
+  cursor: pointer;
+  border: none;
+}
+
+.downloadBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(107, 253, 129, 0.4);
+  background-color: #73f5b6;
+}
+
+.downloadBtn:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+  .cardDiv {
+    padding: 32px 16px;
+    border-radius: 24px;
+  }
+
+  .cardDiv h1 {
+    font-size: 32px;
+  }
+
+  .cardDiv h2 {
+    font-size: 22px;
+    margin-bottom: 24px;
+  }
+
+  .cardDiv img {
+    width: 100px;
+    margin-bottom: 32px;
+  }
+
+  .downloadBtn {
+    font-size: 18px;
+    padding: 14px 0;
+    max-width: 100%;
+  }
+}

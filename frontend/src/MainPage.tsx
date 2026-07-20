@@ -1,7 +1,7 @@
 import styles from './DroplinePage.module.css';
 import { Link } from 'react-router-dom';
 
-export default function App() {
+export default function MainPage() {
   return (
     <div className={styles.page}>
       <header className={styles.topbar}>
