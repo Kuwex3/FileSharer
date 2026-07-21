@@ -1,5 +1,5 @@
 import styles from "./FileCard.module.css";
-import folderImage from ".././src/assets/45480a3100a9edc6bf3b0ce03b3830e4-blue-folder-rounded.webp"
+import folderImage from ".././src/assets/folder.webp"
 
 interface FileCardProps {
   file: {
