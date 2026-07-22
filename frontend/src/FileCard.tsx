@@ -14,7 +14,7 @@ export default function FileCard( {file}: FileCardProps ) {
     if (!file) {
         return(
             <div className={styles.cardDiv}>
-                <h1>Loading...</h1>
+                <h1>Loading content...</h1>
             </div>
         )
     }
