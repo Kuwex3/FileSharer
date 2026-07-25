@@ -7,4 +7,4 @@ app.include_router(uploadRouter)
 
 @app.get("/")
 async def main():
-    return {"Main":"Endpoint"}
+    return {"Main":"Endpoint."}
