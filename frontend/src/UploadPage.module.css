@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+.mainDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  background-color: rgba(47, 78, 93, 0.157);
+  padding: 40px 24px;
+  border-radius: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 650px;
+  margin: 80px auto;
+}
+
+.mainDiv h1 {
+  font-family: 'Goldman', sans-serif;
+  color: #ffffff;
+  line-height: 1.2;
+  margin: 0 0 24px 0;
+  font-size: 44px;
+  text-align: center;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 450px;
+  gap: 20px;
+}
+
+.uploadBtn, .submitBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #6bfd81;
+  color: #0f1724;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 24px;
+  font-weight: 500;
+  
+  padding: 16px 24px; 
+  width: 100%;
+  border-radius: 100px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 20px rgba(107, 253, 129, 0.2);
+  cursor: pointer;
+  border: none;
+  box-sizing: border-box;
+}
+
+.uploadBtn:hover, .submitBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(107, 253, 129, 0.4);
+  background-color: #73f5b6;
+}
+
+.uploadBtn:active, .submitBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.uploadBtn input[type="file"] {
+  display: none;
+}
+
+.submitBtn:disabled {
+  background-color: rgba(107, 253, 129, 0.3);
+  color: rgba(15, 23, 36, 0.5);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.fileInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 12px 18px;
+  width: 100%;
+  box-sizing: border-box;
+  color: #e2e8f0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 16px;
+}
+
+.fileName {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 85%;
+}
+
+.removeBtn {
+  background: none;
+  border: none;
+  color: #ff6b6b;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0 4px;
+  transition: color 0.2s;
+}
+
+.removeBtn:hover {
+  color: #ff4747;
+}
+
+@media (max-width: 600px) {
+  .mainDiv {
+    padding: 32px 16px;
+    border-radius: 24px;
+  }
+
+  .mainDiv h1 {
+    font-size: 32px;
+  }
+
+  .uploadBtn, .submitBtn {
+    font-size: 18px;
+    padding: 14px 16px;
+  }
+}
