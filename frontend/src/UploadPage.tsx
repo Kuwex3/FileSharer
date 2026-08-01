@@ -22,7 +22,7 @@ export default function UploadPage() {
         method: "POST",
         body: formData,
       });
-      if (response.ok) console.log("Success.");
+      if (response.ok) console.log("Successful.");
     } catch (err) {
       console.error(err);
     }
