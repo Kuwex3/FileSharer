@@ -1,23 +1,17 @@
-from fastapi import APIRouter, UploadFile, Request, Response
+from fastapi import APIRouter, UploadFile
+import aiofiles
+from backend.config import Settings
 
 router = APIRouter()
 
+max_size = Settings.size_limit
 
 @router.post("/upload")
-async def test_router(request: Request):
-    total_bytes = 0
-    with open("./backend/test_storage/12.mp3", "ab") as file:
-        async for chunk in request.stream():
-            file.write(chunk)
-            print(f"collected chunks: {total_bytes}")
-        return {"test"}
-
-# @router.post("/upload")
-# async def test_router(user_file: UploadFile):
-#     if user_file.size < 100000000000000000000000000000000000:
-#         data = await user_file.read()
-#         file_name = user_file.filename
-#         with open(f"backend/test_storage/{file_name}", "wb") as file:
-#             file.write(data)
-#     else:
-#         return {"access": "denied"}
+async def test_router(user_file: UploadFile):
+    if user_file.size <= max_size:
+        async with aiofiles.open(f"./backend/test_storage/{user_file.filename}", "wb") as file:
+            while chunk := await user_file.read(1024 * 1024):
+                await file.write(chunk)
+            return {"success"}
+    else:
+        return {"denied"}
