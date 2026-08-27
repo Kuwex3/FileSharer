@@ -12,6 +12,6 @@ async def test_router(user_file: UploadFile):
         async with aiofiles.open(f"./backend/test_storage/{user_file.filename}", "wb") as file:
             while chunk := await user_file.read(1024 * 1024):
                 await file.write(chunk)
-            return {"success"}
+            return {"Success"}
     else:
         return {"denied"}
