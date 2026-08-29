@@ -1,18 +1,16 @@
-from sqlmodel import SQLModel, Field, create_engine, Session
+from sqlmodel.ext.asyncio.session import AsyncSession
+
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.asyncio import create_async_engine
+
 from backend.config import Settings
-
-class File(SQLModel, table=True):
-    id: int = Field(primary_key=True, nullable=False)
-    file_name: str = Field(unique=True, min_length=5, nullable=False)
-    size: int = Field(nullable=False)
     
-engine = create_engine(Settings.sqlite_url)
-
-def create_db():
-    SQLModel.metadata.create_all(engine)
+async_engine = create_async_engine(Settings.async_sqlite_url)
+          
+async_session_maker = sessionmaker(
+    async_engine, class_=AsyncSession, expire_on_commit=False
+)    
     
-create_db()
-
-def get_session():
-    with Session(engine) as session:
-        yield session
+async def get_async_session():
+    async with async_session_maker() as async_session:
+        yield async_session
