@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from backend.endpoints.upload_file import router as uploadRouter
+from backend.endpoints.download_file import router as downloadRouter
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -13,6 +14,7 @@ app.add_middleware(
 )
 
 app.include_router(uploadRouter)
+app.include_router(downloadRouter)
 
 @app.get("/")
 async def main():

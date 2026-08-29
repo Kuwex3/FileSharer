@@ -2,3 +2,4 @@
 .env
 __*
 backend/test_storage/*
+backend/database.db
