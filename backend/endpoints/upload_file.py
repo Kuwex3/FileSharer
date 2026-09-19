@@ -1,4 +1,4 @@
-from fastapi import APIRouter, UploadFile, Depends
+from fastapi import APIRouter, UploadFile, Depends, HTTPException
 import aiofiles
 
 from backend.config import Settings
@@ -16,9 +16,10 @@ async def test_router(user_file: UploadFile, session = Depends(get_async_session
             while chunk := await user_file.read(1024 * 1024):
                 await file.write(chunk)
         file_for_add = File(file_name = user_file.filename, size = user_file.size)
+        
         session.add(file_for_add)
         await session.commit()
         await session.refresh(file_for_add)
-        return {"Success"}
+        return {"file_id": file_for_add.id}
     else:
-        return {"denied"}
+        raise HTTPException(status_code=413, detail="File too large")

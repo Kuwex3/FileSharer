@@ -3,11 +3,18 @@ import styles from "./UploadPage.module.css";
 
 export default function UploadPage() {
   const [file, setFile] = useState<File | null>(null);
+  const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setFile(e.target.files[0]);
+      setDownloadUrl(null);
     }
+  };
+
+  const handleRemoveFile = () => {
+    setFile(null);
+    setDownloadUrl(null);
   };
 
   const handleSubmit = async (e: SyntheticEvent) => {
@@ -22,7 +29,14 @@ export default function UploadPage() {
         method: "POST",
         body: formData,
       });
-      if (response.ok) console.log("Successful!");
+
+      if (response.ok) {
+        const data: { file_id: number | string } = await response.json();
+
+        setDownloadUrl(`http://127.0.0.1:5173/download?file_id=${data.file_id}`);
+      } else {
+        console.error("Upload error:", response.statusText);
+      }
     } catch (err) {
       console.error(err);
     }
@@ -45,7 +59,7 @@ export default function UploadPage() {
             <button 
               type="button" 
               className={styles.removeBtn} 
-              onClick={() => setFile(null)}
+              onClick={handleRemoveFile}
             >
               ✕
             </button>
@@ -59,6 +73,16 @@ export default function UploadPage() {
           disabled={!file} 
         />
       </form>
+
+      {downloadUrl && (
+        <div className={styles.successContainer}>
+          <p>🎉 Upload Successed!</p>
+          <p>Link for download:</p>
+          <a href={downloadUrl} target="_blank" rel="noreferrer">
+            {downloadUrl}
+          </a>
+        </div>
+      )}
     </div>
   );
 }

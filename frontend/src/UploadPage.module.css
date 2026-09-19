@@ -107,6 +107,20 @@
   transition: color 0.2s;
 }
 
+.successContainer {
+  margin-top: 20px;
+  border-radius: 55px;
+  background-color: #3a3e424d;
+  padding: 20px;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.successContainer.p {
+  text-align: center;
+}
+
 .removeBtn:hover {
   color: #ff4747;
 }
