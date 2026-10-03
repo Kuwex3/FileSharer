@@ -9,7 +9,7 @@ router = APIRouter()
 
 max_size = Settings.size_limit
 
-@router.post("/upload")
+@router.post("/api/upload")
 async def test_router(user_file: UploadFile, session = Depends(get_async_session)):
     if user_file.size <= max_size:
         async with aiofiles.open(f"./test_storage/{user_file.filename}", "wb") as file:

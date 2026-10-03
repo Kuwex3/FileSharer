@@ -2,6 +2,7 @@ import { useState, type ChangeEvent, type SyntheticEvent } from "react";
 import styles from "./UploadPage.module.css";
 
 export default function UploadPage() {
+  const API_BASE_URL = import.meta.env.VITE_API_URL || '';
   const [file, setFile] = useState<File | null>(null);
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
 
@@ -25,7 +26,7 @@ export default function UploadPage() {
     formData.append("user_file", file);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/upload", {
+      const response = await fetch(`${API_BASE_URL}/api/upload`, {
         method: "POST",
         body: formData,
       });
@@ -33,7 +34,7 @@ export default function UploadPage() {
       if (response.ok) {
         const data: { file_id: number | string } = await response.json();
 
-        setDownloadUrl(`http://127.0.0.1:5173/download?file_id=${data.file_id}`);
+        setDownloadUrl(`/download?file_id=${data.file_id}`);
       } else {
         console.error("Upload error:", response.statusText);
       }

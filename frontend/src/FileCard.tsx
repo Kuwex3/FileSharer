@@ -9,6 +9,8 @@ interface FileData {
   size: number;
 }
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || "";
+
 const formatBytes = (bytes: number): string => {
   if (bytes === 0) return "0 Bytes";
   const k = 1024;
@@ -24,7 +26,6 @@ export default function FileCard() {
   const [file, setFile] = useState<FileData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [downloading, setDownloading] = useState<boolean>(false);
 
   useEffect(() => {
     if (!fileId) {
@@ -35,7 +36,7 @@ export default function FileCard() {
     const fetchFile = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`http://127.0.0.1:8000/getInfo?file_id=${fileId}`);
+        const response = await fetch(`${API_BASE_URL}/api/getInfo?file_id=${fileId}`);
 
         if (!response.ok) {
           throw new Error("File not found");
@@ -53,33 +54,15 @@ export default function FileCard() {
     fetchFile();
   }, [fileId]);
 
-  const handleDownload = async () => {
+  const handleDownload = () => {
     if (!file) return;
-
-    try {
-      setDownloading(true);
-      const response = await fetch(`http://127.0.0.1:8000/download?file_id=${file.id}`);
-
-      if (!response.ok) {
-        throw new Error("Download failed");
-      }
-
-      const blob = await response.blob();
-      const downloadUrl = window.URL.createObjectURL(blob);
-      
-      const link = document.createElement("a");
-      link.href = downloadUrl;
-      link.download = file.file_name;
-      document.body.appendChild(link);
-      link.click();
-      
-      link.remove();
-      window.URL.revokeObjectURL(downloadUrl);
-    } catch (err: any) {
-      alert(err.message || "Failed to download file");
-    } finally {
-      setDownloading(false);
-    }
+    const downloadUrl = `${API_BASE_URL}/api/download?file_id=${file.id}`;
+    const link = document.createElement("a");
+    link.href = downloadUrl;
+    link.setAttribute("download", file.file_name);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
   };
 
   if (loading) {
@@ -107,9 +90,8 @@ export default function FileCard() {
       <button 
         className={styles.downloadBtn} 
         onClick={handleDownload}
-        disabled={downloading}
       >
-        {downloading ? "Downloading..." : "Download"}
+        Download
       </button>
     </div>
   );
