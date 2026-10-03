@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from backend.endpoints.upload_file import router as uploadRouter
-from backend.endpoints.download_file import router as downloadRouter
+from endpoints.upload_file import router as uploadRouter
+from endpoints.download_file import router as downloadRouter
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()

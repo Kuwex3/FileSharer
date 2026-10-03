@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends
 from fastapi.responses import FileResponse
 
-from backend.db_functions.main import get_async_session
-from backend.db_functions.models import File
+from db_functions.main import get_async_session
+from db_functions.models import File
 
 from sqlmodel import select
 
@@ -27,7 +27,7 @@ async def download_file(file_id: str | None = None, session = Depends(get_async_
     file_name = result.all()[0].file_name
     
     file = FileResponse(
-        path=f"./backend/test_storage/{file_name}",
+        path=f"./test_storage/{file_name}",
         filename=file_name
     )
     return file

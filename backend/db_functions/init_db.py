@@ -1,8 +1,8 @@
 from sqlmodel import SQLModel, create_engine
 from sqlalchemy.ext.asyncio import create_async_engine
 
-from backend.config import Settings
-from backend.db_functions.models import File
+from config import Settings
+from db_functions.models import File
 
 engine = create_engine(Settings.sqlite_url)      
 
